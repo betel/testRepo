@@ -1,2 +1,2 @@
 ##JavaFX testcode;
-requires JacaFX SDK
+requires JavaFX SDK
