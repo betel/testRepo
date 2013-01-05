@@ -1,2 +1,2 @@
-##JavaFX testcode;
-requires JavaFX SDK
+##Test
+Hello!
