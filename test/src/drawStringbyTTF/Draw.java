@@ -9,8 +9,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.util.ResourceLoader;
 
-
-
 /*
  * Colorクラスをawt,lwjgl,slic2dのどれにするかでバグが出るかも
  * InputStreamのクラスもチェック。
@@ -19,7 +17,11 @@ public class Draw {
 	private TrueTypeFont font;
 	private boolean antiAlias = true;
 
-	public void init(){
+	public Draw(){
+		initDraw();
+	}
+
+	public void initDraw(){
 		InputStream input = ResourceLoader.getResourceAsStream("res/UbuntuMono.ttf");
 
 		try {

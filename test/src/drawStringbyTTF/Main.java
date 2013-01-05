@@ -9,25 +9,27 @@ import org.newdawn.slick.Color;
 public class Main {
 
 	private Draw draw;
+	private CalcFPS fps;
 
 	public void start(){
-		
+
 		initGL(800,600);
 		init();
-		
+
 		while(!Display.isCloseRequested()){
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-			
-			draw.render(100, 100, "HELLOOOO", Color.green);
-			
+
+			draw.render(10, 10, fps.getFPSString(), Color.green);
+
 			Display.update();
+			Display.sync(100);
 		}
 		Display.destroy();
 	}
 
 	public void init(){
-		draw = new Draw();
-		draw.init();
+		draw	= new Draw();
+		fps		= new CalcFPS();
 	}
 
 	public void initGL(int width, int height){
@@ -54,7 +56,7 @@ public class Main {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, width, 0, height, 1, -1);
+		GL11.glOrtho(0, width, height, 0, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 	}
 
