@@ -18,24 +18,24 @@ public class LifePanel extends JPanel {
  private Graphics offg;
 
 
- public LifePanel(){
+ public LifePanel(){				//オーバーロード。引数が無いときは(25,25)で初期化する
   this(25, 25);
  }
 
- public LifePanel(int i, int j){
-  dataWidth = i;
+ public LifePanel(int i, int j){	//オーバーロード。引数を指定して初期化する
+  dataWidth	 = i;
   dataHeight = j;
   setPreferredSize(new Dimension(dataWidth * 5,
    dataHeight * 5));
-  initialData();
-  addMouseListener(new MouseAdapter(){
+  initialData();					//初期化
+  addMouseListener(new MouseAdapter(){	//内部クラス
    public void mousePressed(MouseEvent mouseevent){
     doMouseDown(mouseevent);
    }
   });
  }
 
- public void initialData(){
+ public void initialData(){			//初期化。すべてのセルをfalse状態にする
   data = new boolean[dataWidth][dataHeight];
   for(int i = 0; i < dataWidth; i++){
    for(int j = 0; j < dataHeight; j++)
@@ -77,7 +77,7 @@ public class LifePanel extends JPanel {
 
   g.clearRect(0, 0, getSize().width, getSize().height);
   g.drawImage(offScreen, 0, 0, this);
-  }
+ }
 
  public void checkAllLife(){
   boolean aflag[][] = new boolean[dataWidth][dataHeight];
