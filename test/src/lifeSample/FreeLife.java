@@ -20,7 +20,7 @@ public class FreeLife extends JFrame
   new FreeLife().setVisible(true);
  }
  
- public FreeLife(){
+ public FreeLife(){						//コンストラクタ
   this.setSize(530, 500);
   setBackground(Color.pink);
   flg = false;
