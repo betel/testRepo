@@ -2,6 +2,7 @@
 .classpath
 .settings/
 .properties
+/test/twitter4j.properties
 # Package Files #
 *.jar
 *.war
