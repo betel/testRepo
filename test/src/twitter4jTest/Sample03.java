@@ -19,7 +19,7 @@ public class Sample03 {
 }
 
 class MyStatusAdapter extends StatusAdapter{
-	boolean flag = false;
+	boolean flag = true;
 	public void onStatus(Status status){
 		User user = status.getUser();
 		//ユーザーのタイムゾーンを取得
