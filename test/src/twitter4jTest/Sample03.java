@@ -10,7 +10,7 @@ public class Sample03 {
 	public static void main(String[] args){
 		try{
 			TwitterStream twitterStream = TwitterStreamFactory.getSingleton();
-			twitterStream.addListener(new MyStatusAdapter());
+			twitterStream.addListener(new MyStatusAdapter2());
 			twitterStream.sample();
 		}catch(Exception e){
 			e.printStackTrace();
@@ -18,7 +18,7 @@ public class Sample03 {
 	}
 }
 
-class MyStatusAdapter extends StatusAdapter{
+class MyStatusAdapter2 extends StatusAdapter{
 	boolean flag = true;
 	public void onStatus(Status status){
 		User user = status.getUser();
