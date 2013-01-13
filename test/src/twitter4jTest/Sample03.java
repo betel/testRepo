@@ -19,17 +19,38 @@ public class Sample03 {
 }
 
 class MyStatusAdapter extends StatusAdapter{
+	boolean flag = false;
 	public void onStatus(Status status){
 		User user = status.getUser();
+		//ユーザーのタイムゾーンを取得
+		String tz = user.getTimeZone();
 
-		String strText = status.getText();
-		strText = strText.replaceAll("\r\n", " ");
-		strText = strText.replaceAll("\r", " ");
-		strText = strText.replaceAll("\n", " ");
+		//タイムゾーンが東京、大阪、札幌のときのみ
+		if(flag){
+			if(tz != null && (tz.equals("Tokyo"))||(tz.equals("Osaka"))||(tz.equals("Sapporo"))){
+				String strText = status.getText();
 
-		strText = strText.replaceAll("\t", " ");
+				//ツイートから改行記号を除去
+				strText = strText.replaceAll("\r\n", " ");
+				strText = strText.replaceAll("\r", " ");
+				strText = strText.replaceAll("\n", " ");
+				//ツイートからタブ記号を除去
+				strText = strText.replaceAll("\t", " ");
 
-		System.out.println(user.getScreenName()
-				+ "\t" + strText);
+				System.out.println(user.getScreenName() + "\t\t" + strText);
+			}
+		}else{
+			String strText = status.getText();
+
+			//ツイートから改行記号を除去
+			strText = strText.replaceAll("\r\n", " ");
+			strText = strText.replaceAll("\r", " ");
+			strText = strText.replaceAll("\n", " ");
+			//ツイートからタブ記号を除去
+			strText = strText.replaceAll("\t", " ");
+
+			System.out.println(user.getScreenName() + "\t\t" + strText);
+		}
+
 	}
 }
