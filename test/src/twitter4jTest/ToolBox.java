@@ -29,13 +29,24 @@ public class ToolBox {
 		}
 	}
 	/**
-	 * タイムゾーンが日本であるかどうかの判定
+	 * タイムゾーンがどこであるかの判定
 	 * @param user (twitter4j.user)
 	 * @return boolean
 	 */
 	public static boolean isJapanese(User user){
 		String tz = user.getTimeZone();
-		boolean region = tz!=null&&(tz.equals("Tokyo"))||(tz.equals("Osaka"))||(tz.equals("Sapporo"));
+		boolean region = tz!=null&&(tz.equals("Tokyo")||tz.equals("Osaka")||tz.equals("Sapporo"));
+		return region;
+	}
+	public static boolean isUS(User user){
+		String tz = user.getTimeZone();
+		boolean region = tz!=null&&(tz.equals("Eastern Time (US & Canada)")||tz.equals("Central Time (US & Canada)")||tz.equals("Eastern Time (US & Canada)")
+				||tz.equals("Pacific Time (US & Canada)"));
+		return region;
+	}
+	public static boolean isUK(User user){
+		String tz = user.getTimeZone();
+		boolean region = tz!=null&&tz.equals("London");
 		return region;
 	}
 	/**
