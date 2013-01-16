@@ -7,8 +7,7 @@ public class Sample04 {
 
 	public void showStream(){
 		TwitterStream twitterStream = TwitterStreamFactory.getSingleton();
-		MyStatusAdapter ms = new MyStatusAdapter();
-		twitterStream.addListener(ms);
+		twitterStream.addListener(new OutputTweets());
 		twitterStream.sample();
 	}
 	//実行

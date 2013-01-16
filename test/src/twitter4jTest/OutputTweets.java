@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,38 +12,43 @@ import twitter4j.Status;
 import twitter4j.StatusAdapter;
 import twitter4j.User;
 
-public class MyStatusAdapter extends StatusAdapter{
+public class OutputTweets extends StatusAdapter{
 
 	public int count = 0;
-	private int limit = 5;
+	private int limit = 100;
+	public ArrayList<String> tweets = new ArrayList<String>();
 
 	public void onStatus(Status status){
-
 		User user = status.getUser();
 		if(isJapanese(user)){
 			String strText = status.getText();
 			if(isContained(strText)){
 				strText = arrangeStr(strText);
-				System.out.println("<"+count+">\t" +status.getCreatedAt() + "\t"+ user.getScreenName() + "    \t\t\t" + strText);
-				//pw.println("<"+count+">\t" + user.getScreenName() + "    \t\t\t" + strText);
+				String textStyle = "<"+count+">\t" +status.getCreatedAt() + " "+ user.getScreenName() + "\t\t" + strText;
+				tweets.add(textStyle);
+				System.out.println("<"+count+">\t" +status.getCreatedAt() + " "+ user.getScreenName() + "\t\t" + strText);
 				count++;
+			}
+			if(count>limit-1){
+				writeIt(tweets);
+				System.exit(0);
 			}
 		}
 	}
 
-	//一行ずつファイルに出力
-	public void writeIt(String str){
+	//ArrayListの内容をすべてファイルに出力
+	public void writeIt(ArrayList<String> list){
 		try {
 			PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter("tweets.txt")));
-			pw.println(str);
+			for(String str : list){
+				pw.println(str);
+			}
 			pw.close();
-
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.err.println("Can't make file");
 		}
 	}
-
 	//タイムゾーンが日本であるかどうかの判定
 	public boolean isJapanese(User user){
 		String tz = user.getTimeZone();
